@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HostwayParking.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HostwayParking.Infrastructure.DataAcess
 {
@@ -7,7 +8,9 @@ namespace HostwayParking.Infrastructure.DataAcess
 
         internal HostwaayParkingDbContext(DbContextOptions<HostwaayParkingDbContext> options) : base(options) { }
 
-        public DbSet<>
+        public DbSet<Parking> Parkings { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
+
 
     }
 }

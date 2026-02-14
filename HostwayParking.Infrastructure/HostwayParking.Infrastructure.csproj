@@ -12,14 +12,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.0" />
-  </ItemGroup>
-	
-  <ItemGroup>	
-    <ProjectReference Include="..\HostwayParking.Domain\HostwayParking.Domain.csproj" />
-  </ItemGroup>
+  </ItemGroup>    
 
   <ItemGroup>
-    <Folder Include="DataAcess\Repositories\" />
+    <ProjectReference Include="..\HostwayParking.Domain\HostwayParking.Domain.csproj" />
   </ItemGroup>
 
 </Project>
