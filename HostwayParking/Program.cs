@@ -1,4 +1,5 @@
-using HostwayParking.Infrastructure.DataAcess;
+using HostwayParking.Business;
+using HostwayParking.Infrastructure.DataAcess.Config;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddOpenApi();
 
 // Add infra
 builder.Services.AddInfraestructure(builder.Configuration);
+builder.Services.AddUseCases(builder.Configuration);
 
 var app = builder.Build();
 
