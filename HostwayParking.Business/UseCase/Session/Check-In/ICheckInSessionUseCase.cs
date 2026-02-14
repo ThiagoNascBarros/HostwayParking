@@ -2,6 +2,6 @@
 {
     public interface ICheckInSessionUseCase
     {
-        Task Execute(string plate, string model, string color);
+        Task Execute(string plate, string model, string color, string type);
     }
 }

@@ -15,7 +15,7 @@ namespace HostwayParking.Api.Controller
         {
             try
             {
-                await useCase.Execute(request.Plate, request.Model, request.Color);
+                await useCase.Execute(request.Plate, request.Model, request.Color, request.Type);
                 return Created();
             }
             catch (Exception ex) { return BadRequest(ex.Message); }

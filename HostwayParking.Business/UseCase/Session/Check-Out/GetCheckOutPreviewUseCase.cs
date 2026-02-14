@@ -39,7 +39,8 @@ namespace HostwayParking.Business.UseCase.Session.Check_Out
                 ExitTime = DateTime.Now,
                 TimeSpent = $"{duration.Hours:00}:{duration.Minutes:00}",
                 TotalPrice = totalPrice,
-                Plate = session.Vehicle.Plate
+                Plate = session.Vehicle.Plate,
+                Model = session.Vehicle.Model
             };
         }
     }

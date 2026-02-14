@@ -17,7 +17,7 @@ namespace HostwayParking.Business.UseCase.Session.Check_In
             _unitOfWork = unitOfWork;
         }
 
-        public async Task Execute(string plate, string model, string color)
+        public async Task Execute(string plate, string model, string color, string type)
         {
             // 1. Valida se já existe sessão aberta
             var activeSession = await _repository.GetActiveSessionByPlateAsync(plate);
@@ -30,7 +30,7 @@ namespace HostwayParking.Business.UseCase.Session.Check_In
 
             if (vehicle == null)
             {
-                vehicle = new HostwayParking.Domain.Entities.Vehicle { Plate = plate, Model = model, Color = color };
+                vehicle = new HostwayParking.Domain.Entities.Vehicle { Plate = plate, Model = model, Color = color, Type = type };
                 await _vehicleRepo.Post(vehicle);
                 await _unitOfWork.Commit(); // Salva o veículo primeiro para ter o ID
             }
