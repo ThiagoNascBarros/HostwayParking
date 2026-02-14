@@ -19,7 +19,8 @@ namespace HostwayParking.Domain.Entities
 
         public string Type { get; set; } = string.Empty;
 
-        public Parking Parking { get; set; }
+        public int? ParkingId { get; set; }
+        public Parking? Parking { get; set; }
 
     }
 }

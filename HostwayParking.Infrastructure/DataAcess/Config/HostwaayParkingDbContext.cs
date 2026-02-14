@@ -10,7 +10,14 @@ namespace HostwayParking.Infrastructure.DataAcess.Config
 
         public DbSet<Parking> Parkings { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<SessionParking> SessionParkings { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Vehicle>().HasIndex(v => v.Plate).IsUnique();
+        }
 
     }
 }

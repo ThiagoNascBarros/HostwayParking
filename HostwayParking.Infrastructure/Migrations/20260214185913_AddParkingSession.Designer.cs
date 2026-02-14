@@ -3,6 +3,7 @@ using System;
 using HostwayParking.Infrastructure.DataAcess.Config;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HostwayParking.Infrastructure.Migrations
 {
     [DbContext(typeof(HostwaayParkingDbContext))]
-    partial class HostwaayParkingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260214185913_AddParkingSession")]
+    partial class AddParkingSession
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.3");
@@ -72,7 +75,7 @@ namespace HostwayParking.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ParkingId")
+                    b.Property<int>("ParkingId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Plate")
@@ -144,7 +147,9 @@ namespace HostwayParking.Infrastructure.Migrations
                 {
                     b.HasOne("HostwayParking.Domain.Entities.Parking", "Parking")
                         .WithMany("Vehicles")
-                        .HasForeignKey("ParkingId");
+                        .HasForeignKey("ParkingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Parking");
                 });

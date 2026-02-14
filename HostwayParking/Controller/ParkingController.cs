@@ -1,4 +1,5 @@
-﻿using HostwayParking.Business.UseCase.Parking.Register;
+﻿using HostwayParking.Business.UseCase.Parking.GetAll;
+using HostwayParking.Business.UseCase.Parking.Register;
 using HostwayParking.Communication.Request;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +15,7 @@ namespace HostwayParking.Api.Controller
         {
             try
             {
-                var result = await useCase.Register(request);
+                var result = await useCase.Execute(request);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -26,11 +27,11 @@ namespace HostwayParking.Api.Controller
 
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromServices] IRegisterParkingUseCase useCase)
+        public async Task<IActionResult> GetAll([FromServices] IGetAllParkingUseCase useCase)
         {
             try
             {
-                var result = await useCase.GetAll();
+                var result = await useCase.Execute();
                 return Ok(result);
             }
             catch (Exception ex)

@@ -16,18 +16,7 @@ namespace HostwayParking.Business.UseCase.Parking.Register
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<ResponseGetParkingJson>> GetAll()
-        {
-            var parkings = await _repository.GetAll();
-
-            return parkings.Select(p => new ResponseGetParkingJson
-            {
-                Code = p.Code,
-                City = p.Address.City
-            });
-        }
-
-        public async Task<ResponseRegisterParkingJson> Register(RequestRegisterParkingJson request)
+        public async Task<ResponseRegisterParkingJson> Execute(RequestRegisterParkingJson request)
         {
             var entity = new Domain.Entities.Parking()
             {
