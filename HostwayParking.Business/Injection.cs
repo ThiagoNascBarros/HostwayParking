@@ -1,5 +1,8 @@
 ﻿using HostwayParking.Business.UseCase.Parking.GetAll;
 using HostwayParking.Business.UseCase.Parking.Register;
+using HostwayParking.Business.UseCase.Report.Occupancy;
+using HostwayParking.Business.UseCase.Report.Revenue;
+using HostwayParking.Business.UseCase.Report.TopVehicles;
 using HostwayParking.Business.UseCase.Session;
 using HostwayParking.Business.UseCase.Session.Check_In;
 using HostwayParking.Business.UseCase.Session.Check_Out;
@@ -30,6 +33,10 @@ namespace HostwayParking.Business
             service.AddScoped<UseCase.Vehicle.Create.ICreateVehicleUseCase, UseCase.Vehicle.Create.CreateVehicleUseCase>();
             service.AddScoped<UseCase.Vehicle.Update.IUpdateVehicleUseCase, UseCase.Vehicle.Update.UpdateVehicleUseCase>();
             service.AddScoped<UseCase.Vehicle.GetAll.IGetAllVehiclesUseCase, UseCase.Vehicle.GetAll.GetAllVehiclesUseCase>();
+            // Reports
+            service.AddScoped<IGetRevenueByDayUseCase, GetRevenueByDayUseCase>();
+            service.AddScoped<IGetTopVehiclesByTimeUseCase, GetTopVehiclesByTimeUseCase>();
+            service.AddScoped<IGetOccupancyByHourUseCase, GetOccupancyByHourUseCase>();
         }
     }
 }

@@ -25,6 +25,7 @@ namespace HostwayParking.Infrastructure.DataAcess.Config
             service.AddScoped<IParkingRepository, ParkingRepository>();
             service.AddScoped<IVehiclesRepository, VehicleRepository>();
             service.AddScoped<ISessionParkingRepository, SessionParkingRepository>();
+            service.AddScoped<IReportRepository, ReportRepository>();
         }
 
     }
