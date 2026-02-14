@@ -1,3 +1,7 @@
 <Solution>
-  <Project Path="HostwayParking/HostwayParking.csproj" />
+  <Project Path="HostwayParking.Business/HostwayParking.Business.csproj" Id="bcf29e03-ef29-42f8-8dd3-8d863ccf6387" />
+  <Project Path="HostwayParking.Communication/HostwayParking.Communication.csproj" />
+  <Project Path="HostwayParking.Domain/HostwayParking.Domain.csproj" />
+  <Project Path="HostwayParking.Infrastructure/HostwayParking.Infrastructure.csproj" />
+  <Project Path="HostwayParking/HostwayParking.Api.csproj" />
 </Solution>

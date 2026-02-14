@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HostwayParking.Communication\HostwayParking.Communication.csproj" />
+    <ProjectReference Include="..\HostwayParking.Domain\HostwayParking.Domain.csproj" />
+    <ProjectReference Include="..\HostwayParking.Infrastructure\HostwayParking.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

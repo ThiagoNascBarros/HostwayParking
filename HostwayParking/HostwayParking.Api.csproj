@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.3" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.12.40" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controller\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HostwayParking.Business\HostwayParking.Business.csproj" />
+    <ProjectReference Include="..\HostwayParking.Communication\HostwayParking.Communication.csproj" />
+    <ProjectReference Include="..\HostwayParking.Domain\HostwayParking.Domain.csproj" />
+    <ProjectReference Include="..\HostwayParking.Infrastructure\HostwayParking.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
