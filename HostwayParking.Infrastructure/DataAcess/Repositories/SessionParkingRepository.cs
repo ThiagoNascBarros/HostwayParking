@@ -28,6 +28,7 @@ namespace HostwayParking.Infrastructure.DataAcess.Repositories
         {
             // EF Core can't translate the computed property IsActive, so we filter by ExitTime instead
             return await _context.SessionParkings
+                .Include(s => s.Vehicle)
                 .Where(s => s.Vehicle.Plate == plate && s.ExitTime == null)
                 .FirstOrDefaultAsync();
         }

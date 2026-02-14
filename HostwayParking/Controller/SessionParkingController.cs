@@ -22,7 +22,7 @@ namespace HostwayParking.Api.Controller
         }
 
         [HttpPost("checkout")]
-        public async Task<IActionResult> CheckOut([FromBody] RequestRegisterCheckOutJson request, [FromServices] CheckOutUseCase useCase)
+        public async Task<IActionResult> CheckOut([FromBody] RequestRegisterCheckOutJson request, [FromServices] ICheckOutUseCase useCase)
         {
             try
             {
@@ -37,6 +37,17 @@ namespace HostwayParking.Api.Controller
         {
             var result = await useCase.Execute();
             return Ok(result);
+        }
+
+        [HttpGet("checkout/preview/{plate}")]
+        public async Task<IActionResult> CheckOutPreview([FromRoute] string plate, [FromServices] IGetCheckOutPreviewUseCase useCase)
+        {
+            try
+            {
+                var result = await useCase.Execute(plate);
+                return Ok(result);
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
         }
     }
 }

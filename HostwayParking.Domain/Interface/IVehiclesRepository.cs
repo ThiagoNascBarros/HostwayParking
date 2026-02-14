@@ -7,5 +7,6 @@ namespace HostwayParking.Domain.Interface
         Task Post(Vehicle vehicle);
         Task<IEnumerable<Vehicle>> GetAll();
         Task<Vehicle> GetByPlateAsync(string plate);
+        void Update(Vehicle vehicle);
     }
 }

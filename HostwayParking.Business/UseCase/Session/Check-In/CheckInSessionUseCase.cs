@@ -30,7 +30,7 @@ namespace HostwayParking.Business.UseCase.Session.Check_In
 
             if (vehicle == null)
             {
-                vehicle = new Vehicle { Plate = plate, Model = model, Color = color };
+                vehicle = new HostwayParking.Domain.Entities.Vehicle { Plate = plate, Model = model, Color = color };
                 await _vehicleRepo.Post(vehicle);
                 await _unitOfWork.Commit(); // Salva o veículo primeiro para ter o ID
             }

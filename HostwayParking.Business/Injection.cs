@@ -24,7 +24,12 @@ namespace HostwayParking.Business
             service.AddScoped<IGetAllParkingUseCase, GetAllParkingUseCase>();
             service.AddScoped<ICheckInSessionUseCase, CheckInSessionUseCase>();
             service.AddScoped<ICheckOutUseCase, CheckOutUseCase>();
+            service.AddScoped<IGetCheckOutPreviewUseCase, GetCheckOutPreviewUseCase>();
             service.AddScoped<IGetAllActiveSessionsUseCase, GetAllActiveSessionsUseCase>();
+            // Vehicle
+            service.AddScoped<UseCase.Vehicle.Create.ICreateVehicleUseCase, UseCase.Vehicle.Create.CreateVehicleUseCase>();
+            service.AddScoped<UseCase.Vehicle.Update.IUpdateVehicleUseCase, UseCase.Vehicle.Update.UpdateVehicleUseCase>();
+            service.AddScoped<UseCase.Vehicle.GetAll.IGetAllVehiclesUseCase, UseCase.Vehicle.GetAll.GetAllVehiclesUseCase>();
         }
     }
 }

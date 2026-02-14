@@ -29,5 +29,10 @@ namespace HostwayParking.Infrastructure.DataAcess.Repositories
         {
             return dbContext.Vehicles.FirstOrDefaultAsync(v => v.Plate == plate);
         }
+
+        public void Update(Vehicle vehicle)
+        {
+            dbContext.Vehicles.Update(vehicle);
+        }
     }
 }
