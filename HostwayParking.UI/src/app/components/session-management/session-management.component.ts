@@ -444,9 +444,12 @@ export class SessionManagementComponent {
   formatDate(dateString: string): string {
   const date = new Date(dateString);
   return date.toLocaleString('pt-BR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
     hour: '2-digit',
     minute: '2-digit',
-    hour12: false // Força o formato 24h
+    hour12: false
   });
 }
 // Saída: "22/05/2023 15:30:00"

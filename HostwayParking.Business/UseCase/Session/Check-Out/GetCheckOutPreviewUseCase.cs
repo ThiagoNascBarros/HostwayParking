@@ -37,7 +37,7 @@ namespace HostwayParking.Business.UseCase.Session.Check_Out
             {
                 EntryTime = session.EntryTime,
                 ExitTime = DateTime.Now,
-                TimeSpent = $"{duration.Hours:00}:{duration.Minutes:00}",
+                TimeSpent = $"Dias: {duration.Days} | {duration.Hours:00}:{duration.Minutes:00}",
                 TotalPrice = totalPrice,
                 Plate = session.Vehicle.Plate,
                 Model = session.Vehicle.Model
