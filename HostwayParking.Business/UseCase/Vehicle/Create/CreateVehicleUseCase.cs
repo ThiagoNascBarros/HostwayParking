@@ -1,3 +1,5 @@
+using HostwayParking.Business.Exceptions;
+using HostwayParking.Business.Validators;
 using HostwayParking.Communication.Request;
 using HostwayParking.Domain.Entities;
 using HostwayParking.Domain.Interface;
@@ -17,6 +19,10 @@ namespace HostwayParking.Business.UseCase.Vehicle.Create
 
         public async Task Execute(RequestRegisterVehicleJson request)
         {
+            var validation = new RegisterVehicleValidator().Validate(request);
+            if (!validation.IsValid)
+                throw new ValidationErrorsException(validation.Errors.Select(e => e.ErrorMessage).ToList());
+
             var exists = await _repository.GetByPlateAsync(request.Plate);
             if (exists != null)
                 throw new Exception("Veículo já cadastrado!");

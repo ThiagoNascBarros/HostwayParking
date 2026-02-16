@@ -359,7 +359,7 @@ export class SessionManagementComponent {
     this.apiService.getActiveSessions().subscribe({
       next: (sessions: any[]) => {
         console.log('Sessions received:', sessions);
-        
+
         // Normaliza os dados para camelCase
         const normalizedSessions = sessions.map(s => ({
           id: s.id || s.Id,
@@ -370,7 +370,7 @@ export class SessionManagementComponent {
           entryTime: s.entryTime || s.EntryTime || s.checkInTime || s.CheckInTime,
           parkingId: s.parkingId || s.ParkingId
         }));
-        
+
         this.activeSessions.set(normalizedSessions as any);
         this.sessionsLoading.set(false);
       },
@@ -400,7 +400,15 @@ export class SessionManagementComponent {
         setTimeout(() => this.checkInSuccess.set(''), 3000);
       },
       error: (err) => {
-        this.checkInError.set('Erro ao fazer check-in');
+        console.log(err.errors);
+
+        const apiErrors = err.error?.errors;
+        if (apiErrors && Array.isArray(apiErrors)) {
+          this.checkInError.set('Erro: ' + apiErrors[0]);
+        } else {
+          this.checkInError.set('Erro ao fazer check-in: ' + (err.message || 'Erro desconhecido'));
+        }
+
         this.checkInLoading.set(false);
       }
     });
@@ -442,16 +450,16 @@ export class SessionManagementComponent {
   }
 
   formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleString('pt-BR', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false
-  });
-}
-// Saída: "22/05/2023 15:30:00"
+    const date = new Date(dateString);
+    return date.toLocaleString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    });
+  }
+  // Saída: "22/05/2023 15:30:00"
 
 }

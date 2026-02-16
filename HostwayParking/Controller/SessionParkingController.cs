@@ -1,4 +1,5 @@
-﻿using HostwayParking.Business.UseCase.Session;
+﻿using HostwayParking.Business.Exceptions;
+using HostwayParking.Business.UseCase.Session;
 using HostwayParking.Business.UseCase.Session.Check_Out;
 using HostwayParking.Business.UseCase.Session.List_Active;
 using HostwayParking.Communication.Request;
@@ -18,6 +19,7 @@ namespace HostwayParking.Api.Controller
                 await useCase.Execute(request);
                 return Created();
             }
+            catch (ValidationErrorsException ex) { return BadRequest(new { errors = ex.Errors }); }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
@@ -29,6 +31,7 @@ namespace HostwayParking.Api.Controller
                 var result = await useCase.Execute(request.Plate);
                 return Ok(result);
             }
+            catch (ValidationErrorsException ex) { return BadRequest(new { errors = ex.Errors }); }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
@@ -47,6 +50,7 @@ namespace HostwayParking.Api.Controller
                 var result = await useCase.Execute(plate);
                 return Ok(result);
             }
+            catch (ValidationErrorsException ex) { return BadRequest(new { errors = ex.Errors }); }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
     }

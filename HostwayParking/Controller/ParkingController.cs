@@ -1,4 +1,5 @@
-﻿using HostwayParking.Business.UseCase.Parking.GetAll;
+﻿using HostwayParking.Business.Exceptions;
+using HostwayParking.Business.UseCase.Parking.GetAll;
 using HostwayParking.Business.UseCase.Parking.Register;
 using HostwayParking.Communication.Request;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,10 @@ namespace HostwayParking.Api.Controller
             {
                 var result = await useCase.Execute(request);
                 return Ok(result);
+            }
+            catch (ValidationErrorsException ex)
+            {
+                return BadRequest(new { errors = ex.Errors });
             }
             catch (Exception ex)
             {

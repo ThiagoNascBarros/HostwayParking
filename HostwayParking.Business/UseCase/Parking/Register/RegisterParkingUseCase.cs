@@ -1,4 +1,6 @@
-﻿using HostwayParking.Communication.Request;
+﻿using HostwayParking.Business.Exceptions;
+using HostwayParking.Business.Validators;
+using HostwayParking.Communication.Request;
 using HostwayParking.Communication.Response;
 using HostwayParking.Domain.Interface;
 
@@ -18,6 +20,10 @@ namespace HostwayParking.Business.UseCase.Parking.Register
 
         public async Task<ResponseRegisterParkingJson> Execute(RequestRegisterParkingJson request)
         {
+            var validation = new RegisterParkingValidator().Validate(request);
+            if (!validation.IsValid)
+                throw new ValidationErrorsException(validation.Errors.Select(e => e.ErrorMessage).ToList());
+
             var entity = new Domain.Entities.Parking()
             {
                 Code = request.Code,

@@ -1,4 +1,7 @@
-﻿using HostwayParking.Communication.Response;
+﻿using HostwayParking.Business.Exceptions;
+using HostwayParking.Business.Validators;
+using HostwayParking.Communication.Request;
+using HostwayParking.Communication.Response;
 using HostwayParking.Domain.Interface;
 
 namespace HostwayParking.Business.UseCase.Session.Check_Out
@@ -19,6 +22,11 @@ namespace HostwayParking.Business.UseCase.Session.Check_Out
 
         public async Task<ResponseCheckoutJson> Execute(string plate)
         {
+            // 0. Validação de entrada
+            var validation = new RegisterCheckOutValidator().Validate(new RequestRegisterCheckOutJson { Plate = plate });
+            if (!validation.IsValid)
+                throw new ValidationErrorsException(validation.Errors.Select(e => e.ErrorMessage).ToList());
+
             // 1. Busca sessão ativa
             var session = await _sessionRepo.GetActiveSessionByPlateAsync(plate);
             if (session == null)
