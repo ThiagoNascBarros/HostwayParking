@@ -3,5 +3,6 @@
   <Project Path="HostwayParking.Communication/HostwayParking.Communication.csproj" />
   <Project Path="HostwayParking.Domain/HostwayParking.Domain.csproj" />
   <Project Path="HostwayParking.Infrastructure/HostwayParking.Infrastructure.csproj" />
+  <Project Path="HostwayParking.Tests/HostwayParking.Tests.csproj" Id="9aa6b3db-0143-4042-aec6-e31f44d53841" />
   <Project Path="HostwayParking/HostwayParking.Api.csproj" />
 </Solution>
