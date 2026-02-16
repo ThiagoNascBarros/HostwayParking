@@ -22,6 +22,7 @@ namespace HostwayParking.Business.UseCase.Session.Check_In
         {
             // 1. Valida se já existe sessão aberta
             var activeSession = await _repository.GetActiveSessionByPlateAsync(request.Plate);
+
             if (activeSession != null)
                 throw new Exception("Veículo já está no pátio!");
 

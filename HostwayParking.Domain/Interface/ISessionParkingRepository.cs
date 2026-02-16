@@ -6,7 +6,7 @@ namespace HostwayParking.Domain.Interface
     {
         Task AddAsync(SessionParking session);
         Task UpdateAsync(SessionParking session);
-        Task<SessionParking?> GetActiveSessionByPlateAsync(string plate);
+        Task<SessionParking> GetActiveSessionByPlateAsync(string plate);
         Task<List<SessionParking>> GetAllActiveSessionsAsync();
         Task<List<SessionParking>> GetAllFinishedSessionsAsync();
     }

@@ -216,7 +216,7 @@ export class VehicleCreateComponent {
         }, 1500);
       },
       error: (err) => {
-        this.error.set('Erro ao cadastrar veículo: ' + err.message);
+        this.error.set('Erro ao cadastrar veículo');
         this.loading.set(false);
       }
     });

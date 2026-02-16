@@ -244,7 +244,7 @@ export class ParkingRegisterComponent {
         }, 1500);
       },
       error: (err) => {
-        this.error.set('Erro ao cadastrar estacionamento: ' + err.message);
+        this.error.set('Erro ao cadastrar estacionamento');
         this.loading.set(false);
       }
     });

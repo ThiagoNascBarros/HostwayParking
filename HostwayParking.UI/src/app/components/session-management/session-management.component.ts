@@ -400,7 +400,7 @@ export class SessionManagementComponent {
         setTimeout(() => this.checkInSuccess.set(''), 3000);
       },
       error: (err) => {
-        this.checkInError.set('Erro ao fazer check-in: ' + err.message);
+        this.checkInError.set('Erro ao fazer check-in');
         this.checkInLoading.set(false);
       }
     });
