@@ -1,4 +1,5 @@
-﻿using HostwayParking.Domain.Entities;
+﻿using HostwayParking.Communication.Request;
+using HostwayParking.Domain.Entities;
 using HostwayParking.Domain.Interface;
 
 namespace HostwayParking.Business.UseCase.Session.Check_In
@@ -17,22 +18,27 @@ namespace HostwayParking.Business.UseCase.Session.Check_In
             _unitOfWork = unitOfWork;
         }
 
-        public async Task Execute(string plate, string model, string color, string type)
+        public async Task Execute(RequestRegisterCheckInJson request)
         {
             // 1. Valida se já existe sessão aberta
-            var activeSession = await _repository.GetActiveSessionByPlateAsync(plate);
+            var activeSession = await _repository.GetActiveSessionByPlateAsync(request.Plate);
             if (activeSession != null)
                 throw new Exception("Veículo já está no pátio!");
 
             // 2. Busca ou Cria o Veículo (Simplificação para agilizar o front)
-            // Você precisará de um método GetByPlate no seu VehicleRepository
-            var vehicle = await _vehicleRepo.GetByPlateAsync(plate);
+            var vehicle = await _vehicleRepo.GetByPlateAsync(request.Plate);
 
             if (vehicle == null)
             {
-                vehicle = new HostwayParking.Domain.Entities.Vehicle { Plate = plate, Model = model, Color = color, Type = type };
+                vehicle = new Domain.Entities.Vehicle
+                {
+                    Plate = request.Plate,
+                    Model = request.Model,
+                    Color = request.Color,
+                    Type = request.Type
+                };
                 await _vehicleRepo.Post(vehicle);
-                await _unitOfWork.Commit(); // Salva o veículo primeiro para ter o ID
+                await _unitOfWork.Commit();
             }
 
             // 3. Cria Sessão

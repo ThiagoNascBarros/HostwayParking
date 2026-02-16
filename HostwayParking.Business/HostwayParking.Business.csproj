@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HostwayParking.Communication\HostwayParking.Communication.csproj" />
     <ProjectReference Include="..\HostwayParking.Domain\HostwayParking.Domain.csproj" />
     <ProjectReference Include="..\HostwayParking.Infrastructure\HostwayParking.Infrastructure.csproj" />

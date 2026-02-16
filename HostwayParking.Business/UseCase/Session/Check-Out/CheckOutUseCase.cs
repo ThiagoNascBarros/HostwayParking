@@ -8,7 +8,7 @@ namespace HostwayParking.Business.UseCase.Session.Check_Out
         private readonly ISessionParkingRepository _sessionRepo;
         private readonly IUnitOfWork _unitOfWork;
 
-        private const decimal PRICE_FIRST_HOUR = 10.0m;
+        private const decimal PRICE_INITIAL = 10.0m;
         private const decimal PRICE_EXTRA_HOUR = 5.0m;
 
         public CheckOutUseCase(ISessionParkingRepository sessionRepo, IUnitOfWork unitOfWork)
@@ -26,17 +26,17 @@ namespace HostwayParking.Business.UseCase.Session.Check_Out
 
             // 2. Calcula Tempo
             TimeSpan duration = DateTime.Now - session.EntryTime;
-            double totalHours = Math.Ceiling(duration.TotalHours); // Arredonda para cima conforme prática comum
+            double totalHours = Math.Ceiling(duration.TotalHours); // Arredonda para cima
 
             // 3. Calcula Valor
             decimal totalPrice = 0;
             if (totalHours <= 1)
             {
-                totalPrice = PRICE_FIRST_HOUR;
+                totalPrice = PRICE_INITIAL;
             }
             else
             {
-                totalPrice = PRICE_FIRST_HOUR + ((decimal)(totalHours - 1) * PRICE_EXTRA_HOUR);
+                totalPrice = PRICE_INITIAL + ((decimal)(totalHours - 1) * PRICE_EXTRA_HOUR);
             }
 
             // 4. Fecha Sessão

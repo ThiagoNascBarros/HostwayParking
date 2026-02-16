@@ -1,7 +1,9 @@
-﻿namespace HostwayParking.Business.UseCase.Session
+﻿using HostwayParking.Communication.Request;
+
+namespace HostwayParking.Business.UseCase.Session
 {
     public interface ICheckInSessionUseCase
     {
-        Task Execute(string plate, string model, string color, string type);
+        Task Execute(RequestRegisterCheckInJson request);
     }
 }
